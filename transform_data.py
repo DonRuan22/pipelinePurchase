@@ -149,7 +149,7 @@ tx_day_order_last = pd.merge(tx_day_order_last, tx_day_diff, on='CustomerID')
 tx_user = pd.merge(tx_user, tx_day_order_last[['CustomerID','DayDiff','DayDiff2','DayDiff3','DayDiffMean','DayDiffStd']], on='CustomerID')
 #create tx_class as a copy of tx_user before applying get_dummies
 tx_class = tx_user.copy()
-tx_class = pd.get_dummies(tx_class)
+#tx_class = pd.get_dummies(tx_class)
 
 tx_class['NextPurchaseDayRange'] = 2
 tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
