@@ -8,7 +8,6 @@ Created on Wed May 25 09:23:20 2022
 from datetime import datetime, timedelta,date
 import pandas as pd
 import numpy as np
-from __future__ import division
 from sklearn.cluster import KMeans
 from sklearn.metrics import classification_report,confusion_matrix
 
