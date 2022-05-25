@@ -11,6 +11,8 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import classification_report,confusion_matrix
 
+import google.datalab.bigquery as bq
+
 
 #import the csv
 #tx_data = pd.read_csv('OnlineRetail.csv', encoding= 'unicode_escape')
@@ -153,5 +155,15 @@ tx_class['NextPurchaseDayRange'] = 2
 tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
 tx_class.loc[tx_class.NextPurchaseDay>50,'NextPurchaseDayRange'] = 0
 
-tx_class = pd.to_csv('gcs://don-onlineretail',
+tx_class.to_csv('gcs://don-onlineretail/onlineRetail_transformed.csv',
                  storage_options={"token": "cloud"}, encoding= 'unicode_escape')
+
+# define a BigQuery dataset    
+bigquery_table_name = ('donexp', 'onlineRetail','onlineRetailTransformed')
+table = bq.Table(bigquery_table_name)
+#dataset = bq.Dataset(name = bigquery_dataset_name)
+# Create or overwrite the existing table if it exists
+table_schema = bq.Schema.from_data(tx_class)
+table.create(schema = table_schema, overwrite = True)
+# Write the DataFrame to a BigQuery table
+table.insert(tx_class)
