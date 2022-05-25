@@ -11,7 +11,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import classification_report,confusion_matrix
 
-import google.datalab.bigquery as bq
+from google.cloud import bigquery
 
 
 #import the csv
@@ -160,10 +160,8 @@ tx_class.to_csv('gcs://don-onlineretail/onlineRetail_transformed.csv',
 
 # define a BigQuery dataset    
 bigquery_table_name = ('donexp', 'onlineRetail','onlineRetailTransformed')
-table = bq.Table(bigquery_table_name)
-#dataset = bq.Dataset(name = bigquery_dataset_name)
-# Create or overwrite the existing table if it exists
-table_schema = bq.Schema.from_data(tx_class)
-table.create(schema = table_schema, overwrite = True)
-# Write the DataFrame to a BigQuery table
-table.insert(tx_class)
+bigqueryClient = bigquery.Client()
+tableRef = bigqueryClient.dataset('onlineRetail').table('onlineRetailTransformed')
+
+bigqueryJob = bigqueryClient.load_table_from_dataframe(tx_class, tableRef)
+bigqueryJob.result()
