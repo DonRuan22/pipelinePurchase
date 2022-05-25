@@ -153,5 +153,5 @@ tx_class['NextPurchaseDayRange'] = 2
 tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
 tx_class.loc[tx_class.NextPurchaseDay>50,'NextPurchaseDayRange'] = 0
 
-tx_class = pd.to_csv('gcs://don-onlineretail/OnlineRetail.csv',
+tx_class = pd.to_csv('gcs://don-onlineretail',
                  storage_options={"token": "cloud"}, encoding= 'unicode_escape')
