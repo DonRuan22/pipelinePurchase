@@ -44,6 +44,7 @@ tx_class = (
 tx_class = pd.get_dummies(tx_class)
     
 logger.info('dataframe head - {}'.format(tx_class.describe()))    
+logger.info('dataframe head - {}'.format(tx_class.NextPurchaseDayRange))    
 
 
 #train & test split
