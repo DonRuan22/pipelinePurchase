@@ -41,20 +41,20 @@ tx_class = (
 )
     
 
-tx_class = pd.get_dummies(tx_class)
+tx_classdb = pd.get_dummies(tx_class)
 
-tx_class['NextPurchaseDayRange'] = 2
-tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
-tx_class.loc[tx_class.NextPurchaseDay>50,'NextPurchaseDayRange'] = 0
+#tx_class['NextPurchaseDayRange'] = 2
+#tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
+#tx_class.loc[tx_class.NextPurchaseDay>50,'NextPurchaseDayRange'] = 0
     
-logger.info('dataframe head - {}'.format(tx_class.describe()))    
-logger.info('dataframe head - {}'.format(tx_class.NextPurchaseDayRange))  
-logger.info('dataframe head - {}'.format(tx_class.NextPurchaseDay))  
+logger.info('dataframe head - {}'.format(tx_classdb.describe()))    
+logger.info('dataframe head - {}'.format(tx_classdb.NextPurchaseDayRange))  
+logger.info('dataframe head - {}'.format(tx_classdb.NextPurchaseDay))  
 
 
 #train & test split
-tx_class = tx_class.drop('NextPurchaseDay',axis=1)
-X, y = tx_class.drop('NextPurchaseDayRange',axis=1), tx_class.NextPurchaseDayRange
+tx_classdb = tx_classdb.drop('NextPurchaseDay',axis=1)
+X, y = tx_classdb.drop('NextPurchaseDayRange',axis=1), tx_classdb.NextPurchaseDayRange
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=44)
 
 kfold = KFold(n_splits=2,shuffle=True, random_state=22)
