@@ -38,9 +38,9 @@ tx_class = (
     )
 )
     
-logger.info(tx_class.head(10))
+logger.info('dataframe head - {}'.format(tx_class.head()))
 
-
+'''
     
 tx_class = pd.get_dummies(tx_class)
 
