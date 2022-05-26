@@ -17,6 +17,7 @@ import numpy as np
 from google.cloud import bigquery
 import gcsfs
 import joblib
+import logging
 
 bigqueryClient = bigquery.Client()
 query_string = """
@@ -34,6 +35,8 @@ tx_class = (
         create_bqstorage_client=True,
     )
 )
+    
+logging.info(tx_class.head(10))
     
 tx_class = pd.get_dummies(tx_class)
 
