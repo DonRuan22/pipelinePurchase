@@ -41,6 +41,8 @@ tx_class = (
 )
     
 tx_class = tx_class.drop('NextPurchaseDayRange',axis=1)
+
+tx_class = pd.get_dummies(tx_class)
     
 logger.info('dataframe head - {}'.format(tx_class.describe()))
 tx_class['NextPurchaseDayRange'] = 2
@@ -48,7 +50,7 @@ tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
 tx_class.loc[tx_class.NextPurchaseDay>50,'NextPurchaseDayRange'] = 0
 
     
-tx_class = pd.get_dummies(tx_class)
+
 
 #train & test split
 tx_class = tx_class.drop('NextPurchaseDay',axis=1)
