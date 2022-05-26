@@ -19,7 +19,9 @@ import gcsfs
 import joblib
 import logging
 
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("airflow.task")
+
 
 bigqueryClient = bigquery.Client()
 query_string = """
@@ -38,7 +40,7 @@ tx_class = (
     )
 )
     
-logger.info('dataframe head ')
+logger.info('dataframe head - {}'.format(tx_class.head()))
 
 '''
     
