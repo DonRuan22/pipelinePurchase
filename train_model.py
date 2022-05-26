@@ -51,10 +51,10 @@ tx_class = tx_class.drop('NextPurchaseDay',axis=1)
 X, y = tx_class.drop('NextPurchaseDayRange',axis=1), tx_class.NextPurchaseDayRange
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=44)
 
-kfold = KFold(n_splits=2,shuffle=True, random_state=22)
-cv_result = cross_val_score(xgb.XGBClassifier(),X_train,y_train, cv = kfold,scoring = "accuracy")
+#kfold = KFold(n_splits=2,shuffle=True, random_state=22)
+#cv_result = cross_val_score(xgb.XGBClassifier(),X_train,y_train, cv = kfold,scoring = "accuracy")
 #print('Xboost '+ cv_result)
-logger.info('Xboost - {}'.format(cv_result))
+#logger.info('Xboost - {}'.format(cv_result))
 xgb_model = xgb.XGBClassifier(max_depth=5,min_child_weight=5).fit(X_train,y_train)
 logger.info("Accuracy of XBClassifier on training dataset:{:.2f}"
       .format(xgb_model.score(X_train,y_train)))
