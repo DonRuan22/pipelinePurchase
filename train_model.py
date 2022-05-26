@@ -40,7 +40,7 @@ tx_class = (
     )
 )
     
-#logger.info('dataframe head - {}'.format(tx_class.describe()))
+logger.info('dataframe head - {}'.format(tx_class.describe()))
 
 
     
