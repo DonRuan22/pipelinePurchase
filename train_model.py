@@ -57,11 +57,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 kfold = KFold(n_splits=2,shuffle=True, random_state=22)
 cv_result = cross_val_score(xgb.XGBClassifier(),X_train,y_train, cv = kfold,scoring = "accuracy")
-print('Xboost '+ cv_result)
+#print('Xboost '+ cv_result)
+logger.info('Xboost - {}'.format(cv_result))
 xgb_model = xgb.XGBClassifier(max_depth=5,min_child_weight=5).fit(X_train,y_train)
-print("Accuracy of XBClassifier on training dataset:{:.2f}"
+logger.info("Accuracy of XBClassifier on training dataset:{:.2f}"
       .format(xgb_model.score(X_train,y_train)))
-print("Accuracy of XBClassifier on test dataset:{:.2f}"
+logger.info("Accuracy of XBClassifier on test dataset:{:.2f}"
       .format(xgb_model.score(X_test,y_test)))
 
 filename = 'gcs://don-onlineretail/predict_purchase_model.joblib.pkl'
