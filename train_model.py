@@ -48,7 +48,8 @@ tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
 tx_class.loc[tx_class.NextPurchaseDay>50,'NextPurchaseDayRange'] = 0
     
 logger.info('dataframe head - {}'.format(tx_class.describe()))    
-logger.info('dataframe head - {}'.format(tx_class.NextPurchaseDayRange))    
+logger.info('dataframe head - {}'.format(tx_class.NextPurchaseDayRange))  
+logger.info('dataframe head - {}'.format(tx_class.NextPurchaseDay))  
 
 
 #train & test split
