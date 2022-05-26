@@ -40,6 +40,8 @@ tx_class = (
     )
 )
     
+tx_class = tx_class.drop('NextPurchaseDayRange',axis=1)
+    
 logger.info('dataframe head - {}'.format(tx_class.describe()))
 tx_class['NextPurchaseDayRange'] = 2
 tx_class.loc[tx_class.NextPurchaseDay>20,'NextPurchaseDayRange'] = 1
