@@ -163,5 +163,5 @@ bigquery_table_name = ('donexp', 'onlineRetail','onlineRetailTransformed')
 bigqueryClient = bigquery.Client()
 tableRef = bigqueryClient.dataset('onlineRetail').table('onlineRetailTransformed')
 
-bigqueryJob = bigqueryClient.load_table_from_dataframe(tx_class, tableRef)
+bigqueryJob = bigqueryClient.load_table_from_dataframe(tx_class, tableRef,job_config = bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE"))
 bigqueryJob.result()
