@@ -37,6 +37,8 @@ tx_class = (
 )
     
 logging.info(tx_class.head(10))
+
+"""
     
 tx_class = pd.get_dummies(tx_class)
 
@@ -58,3 +60,4 @@ filename = 'gcs://don-onlineretail/predict_purchase_model.joblib.pkl'
 fs = gcsfs.GCSFileSystem()
 with fs.open(filename, 'wb') as f:
     joblib.dump(xgb_model, f, compress=9)
+"""
