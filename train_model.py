@@ -76,6 +76,6 @@ with fs.open(filename, 'rb') as f:
     model = joblib.load(f)
     cols_when_model_builds = model.get_booster().feature_names
     logger.info('Columns - {}'.format(cols_when_model_builds))
-    y_test = y_test[cols_when_model_builds]
-    predicted = model.predict(y_test)
+    X_test = X_test[cols_when_model_builds]
+    predicted = model.predict(X_test)
     logger.info('Predicted - {}'.format(predicted))
