@@ -74,5 +74,7 @@ with fs.open(filename, 'wb') as f:
     #xgb_model.save_model(filename)
 with fs.open(filename, 'rb') as f:
     model = joblib.load(f)
+    cols_when_model_builds = model.get_booster().feature_names
+    y_test = y_test[cols_when_model_builds]
     predicted = model.predict(y_test)
     logger.info('Predicted - {}'.format(predicted))
