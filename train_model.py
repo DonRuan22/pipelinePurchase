@@ -70,5 +70,9 @@ logger.info("Accuracy of XBClassifier on test dataset:{:.2f}"
 filename = 'gcs://don-onlineretail/predict_purchase_model.txt'
 fs = gcsfs.GCSFileSystem()
 with fs.open(filename, 'wb') as f:
-    #joblib.dump(xgb_model, f, compress=9)
-    xgb_model.save_model(filename)
+    joblib.dump(xgb_model, f, compress=9)
+    #xgb_model.save_model(filename)
+with fs.open(filename, 'rb') as f:
+    model = joblib.load(f)
+    predicted = model.predict(y_test.iloc[0])
+    logger.info('Predicted - {}'.format(predicted))
