@@ -77,5 +77,5 @@ with fs.open(filename, 'rb') as f:
     cols_when_model_builds = model.get_booster().feature_names
     logger.info('Columns - {}'.format(cols_when_model_builds))
     X_test = X_test[cols_when_model_builds]
-    predicted = model.predict(X_test)
+    predicted = model.predict(X_test.iloc[0])
     logger.info('Predicted - {}'.format(predicted))
