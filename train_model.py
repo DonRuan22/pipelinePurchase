@@ -71,4 +71,4 @@ filename = 'gcs://don-onlineretail/predict_purchase_model.txt'
 fs = gcsfs.GCSFileSystem()
 with fs.open(filename, 'wb') as f:
     #joblib.dump(xgb_model, f, compress=9)
-    xgb_model.save_model(f)
+    xgb_model.save_model(filename)
