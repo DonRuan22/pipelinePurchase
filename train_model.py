@@ -67,8 +67,8 @@ logger.info("Accuracy of XBClassifier on training dataset:{:.2f}"
 logger.info("Accuracy of XBClassifier on test dataset:{:.2f}"
       .format(xgb_model.score(X_test,y_test)))
 
-filename = 'gcs://don-onlineretail/predict_purchase_model.joblib.pkl'
+filename = 'gcs://don-onlineretail/predict_purchase_model.txt'
 fs = gcsfs.GCSFileSystem()
-with fs.open(filename, 'wb') as f:
+#with fs.open(filename, 'wb') as f:
     #joblib.dump(xgb_model, f, compress=9)
-    xgb_model.save_model(f)
+xgb_model.save_model(filename)
