@@ -74,5 +74,5 @@ with fs.open(filename, 'wb') as f:
     #xgb_model.save_model(filename)
 with fs.open(filename, 'rb') as f:
     model = joblib.load(f)
-    predicted = model.predict(y_test.iloc[0])
+    predicted = model.predict(y_test)
     logger.info('Predicted - {}'.format(predicted))
